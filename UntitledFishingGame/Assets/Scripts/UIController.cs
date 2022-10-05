@@ -17,7 +17,6 @@ public class UIController : MonoBehaviour
         
     }
 
-    string sceneName = "/Assets/Scenes/TestMovement";
     public void Open(string path)
     {
         SceneManager.LoadScene(path);
