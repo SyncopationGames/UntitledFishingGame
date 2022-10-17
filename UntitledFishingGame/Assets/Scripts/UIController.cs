@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     public GameObject helpPanel;
     public int slideTime;
     bool slide;
+    bool slideDown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,12 @@ public class UIController : MonoBehaviour
     {
         if (slide)
         {
-            StartCoroutine(slideUpUI(helpPanel, slideTime));
+            StartCoroutine(slideUpUI(helpPanel, slideTime, 1));
+        } 
+        
+        if (slideDown)
+        {
+            StartCoroutine(slideUpUI(helpPanel, slideTime, -1));
         }
     }
 
@@ -33,19 +40,36 @@ public class UIController : MonoBehaviour
         slide = true;
     }
 
-    IEnumerator slideUpUI(GameObject slidingUI, int time)
+    public void startSlideDown()
+    {
+        slideDown = true;
+    }
+
+    // dir is either 1 (up) or -1 (down)
+    IEnumerator slideUpUI(GameObject slidingUI, int time, int dir)
     {
         float i = 0;
         float rate = .7f / time;
 
+        // default up
         Vector3 toPos = new Vector3(0, 0, 0);
         Vector3 fromPos = new Vector3(0, -600, 0);
+
+        // if going down
+        if (dir == -1)
+        {
+            toPos = new Vector3(0, -600, 0);
+            fromPos = new Vector3(0, 0, 0);
+        }
+
         while (i < 1)
         {
             i += Time.deltaTime * rate;
             slidingUI.transform.localPosition = Vector3.Lerp(fromPos, toPos, i);
             yield return 0;
         }
+
         slide = false;
+        slideDown = false;
     }
 }

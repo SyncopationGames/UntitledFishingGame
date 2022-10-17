@@ -30,5 +30,11 @@ public class PlayerMove : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         //update the position
-        transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime, 0);    }
+        transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime, 0);
+
+        // update camera position to follow character
+        cam.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -10);
+
+
+    }
 }
