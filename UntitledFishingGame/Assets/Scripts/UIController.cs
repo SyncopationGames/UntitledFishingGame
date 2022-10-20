@@ -53,12 +53,12 @@ public class UIController : MonoBehaviour
 
         // default up
         Vector3 toPos = new Vector3(0, 0, 0);
-        Vector3 fromPos = new Vector3(0, -800, 0);
+        Vector3 fromPos = new Vector3(0, -1000, 0);
 
         // if going down
         if (dir == -1)
         {
-            toPos = new Vector3(0, -800, 0);
+            toPos = new Vector3(0, -1000, 0);
             fromPos = new Vector3(0, 0, 0);
         }
 
